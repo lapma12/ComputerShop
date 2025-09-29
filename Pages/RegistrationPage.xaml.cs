@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerShop.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,20 @@ namespace ComputerShop.Pages
     /// </summary>
     public partial class RegistrationPage : Page
     {
+        ISqlStatement sqlStatement = new ComputerTable();
         public RegistrationPage()
         {
             InitializeComponent();
+        }
+
+        private void registrationButton_Click(object sender, RoutedEventArgs e)
+        {
+            string username = usernameTextBox.Text;
+            string email = emailTextBox.Text;
+            string fullname = fullnameTextBox.Text;
+            string password = passwordBox.Password;
+            sqlStatement.InsertData(username, email, fullname, password);
+            MessageBox.Show("Sikeres regisztráció!");
         }
     }
 }

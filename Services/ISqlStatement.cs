@@ -10,5 +10,7 @@ namespace ComputerShop.Services
     {
         ICollection<object> GetAllData();
         object GetData(string username, string password);
+
+        void InsertData(string username,string email,string fullname,string password);
     }
 }

@@ -20,21 +20,29 @@ namespace ComputerShop.Pages
         {
             string username = usernameTextBox.Text;
             string password = passwordBox.Password;
-            if (username != "" && password != "") {
-                MessageBox.Show(sqlStatement.GetData(username, password).ToString());
-                _mainFrame.Navigate(new CrudPage());
-            }
-            else if(sqlStatement.GetData(username, password).ToString() == "Nincs regisztrálva")
-            {
-                MessageBoxButton buttons = MessageBoxButton.YesNo;
-                MessageBox.Show($"Navigálás a regisztrációhoz: {buttons}");
-                _mainFrame.Navigate(new RegistrationPage());
-            }
-            else if(username == "" && password == "")
+
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
                 MessageBox.Show("Kérem töltse ki a mezőket!");
+                return;
             }
 
+            string result = sqlStatement.GetData(username, password).ToString();
+
+            if (result == "Nincs regisztrálva")
+            {
+                MessageBoxResult answer = MessageBox.Show("A felhasználó nem regisztrált. Szeretnél regisztrálni?", "Regisztráció", MessageBoxButton.YesNo);
+                if (answer == MessageBoxResult.Yes)
+                {
+                    _mainFrame.Navigate(new RegistrationPage());
+                }
+            }
+            else
+            {
+                MessageBox.Show(result);
+                _mainFrame.Navigate(new CrudPage());
+            }
         }
+
     }
 }

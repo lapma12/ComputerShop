@@ -48,5 +48,30 @@ namespace ComputerShop.Services
             return new { result };
         }
 
+        public void InsertData(string username, string email, string fullname, string password)
+        {
+            try
+            {
+                conn.Connection.Open();
+                string sql = "INSERT INTO users (username, email, fullname, password) VALUES (@username, @email, @fullname, @password)";
+                MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
+
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@fullname", fullname);
+                cmd.Parameters.AddWithValue("@password", password); // FONTOS: Hash-eld jelszót élesben!
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba történt a regisztráció során: " + ex.Message);
+            }
+            finally
+            {
+                conn.Connection.Close();
+            }
+        }
+
     }
 }
