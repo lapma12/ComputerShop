@@ -1,28 +1,24 @@
-﻿using System;
+﻿using ComputerShop.Services;
+using MySqlX.XDevAPI.Relational;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Controls; // ha sqlStatement ott van
 
 namespace ComputerShop.Pages
 {
-    /// <summary>
-    /// Interaction logic for CrudPage.xaml
-    /// </summary>
+    
     public partial class CrudPage : Page
     {
+        ISqlStatement sqlStatement = new ComputerTable();
         public CrudPage()
         {
             InitializeComponent();
+            LoadUserData();
+        }
+
+        private void LoadUserData()
+        {
+            List<User> users = sqlStatement.GetAllUsers();
+            userDataGrid.ItemsSource = users;
         }
     }
 }

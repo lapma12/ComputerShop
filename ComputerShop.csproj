@@ -118,6 +118,7 @@
     </Compile>
     <Compile Include="Services\ComputerTable.cs" />
     <Compile Include="Services\ISqlStatement.cs" />
+    <Compile Include="Services\User.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -72,6 +72,40 @@ namespace ComputerShop.Services
                 conn.Connection.Close();
             }
         }
+        public List<User> GetAllUsers()
+        {
+            List<User> users = new List<User>();
+
+            try
+            {
+                conn.Connection.Open();
+                string query = "SELECT username, email, fullname FROM users";
+                MySqlCommand cmd = new MySqlCommand(query, conn.Connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    users.Add(new User
+                    {
+                        Username = reader["username"].ToString(),
+                        Email = reader["email"].ToString(),
+                        FullName = reader["fullname"].ToString()
+                    });
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba az adatok lekérésekor: " + ex.Message);
+            }
+            finally
+            {
+                conn.Connection.Close();
+            }
+
+            return users;
+        }
+
 
     }
 }
