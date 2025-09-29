@@ -27,14 +27,25 @@ namespace ComputerShop.Services
             conn.Connection.Open();
 
 
-            string sql = "SELECT * FROM users WHERE username = @username AND passwrod = @password";
+            string sql = "SELECT * FROM users WHERE username = @username AND password = @password";
             MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
             cmd.Parameters.AddWithValue("@username", username);
             cmd.Parameters.AddWithValue("@password", password);
 
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            string result = "";
+            if (reader.Read() == true)
+            {
+                result = "Regisztrált tag";
+            }
+            else
+            {
+                result = "Nincs regisztrálva";
+            }
             conn.Connection.Close();
 
-            return new { message = " " };
+            return new { result };
         }
 
     }

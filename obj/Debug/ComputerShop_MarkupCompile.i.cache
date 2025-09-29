@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\lapostyanm\source\repos\ComputerShop\App.xaml
-3781930241
+4-734085818
 1-600760770
-11-1877027888
+122072864851
 33-630688528
-MainWindow.xaml;Pages\LoginPage.xaml;Pages\RegistrationPage.xaml;
+MainWindow.xaml;Pages\CrudPage.xaml;Pages\LoginPage.xaml;Pages\RegistrationPage.xaml;
 
-False
+True
 

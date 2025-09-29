@@ -51,3 +51,5 @@ C:\Users\lapostyanm\source\repos\ComputerShop\bin\Debug\System.Numerics.Vectors.
 C:\Users\lapostyanm\source\repos\ComputerShop\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\lapostyanm\source\repos\ComputerShop\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\lapostyanm\source\repos\ComputerShop\obj\Debug\Computer.0350A5DA.Up2Date
+C:\Users\lapostyanm\source\repos\ComputerShop\obj\Debug\Pages\CrudPage.g.cs
+C:\Users\lapostyanm\source\repos\ComputerShop\obj\Debug\Pages\CrudPage.baml

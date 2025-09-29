@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using ComputerShop.Services;
+using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace ComputerShop.Pages
@@ -6,6 +8,7 @@ namespace ComputerShop.Pages
     public partial class LoginPage : Page
     {
         private Frame _mainFrame;
+        ISqlStatement sqlStatement = new ComputerTable();
 
         public LoginPage(Frame mainFrame)
         {
@@ -17,15 +20,21 @@ namespace ComputerShop.Pages
         {
             string username = usernameTextBox.Text;
             string password = passwordBox.Password;
-
-            if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
+            if (username != "" && password != "") {
+                MessageBox.Show(sqlStatement.GetData(username, password).ToString());
+                _mainFrame.Navigate(new CrudPage());
+            }
+            else if(sqlStatement.GetData(username, password).ToString() == "Nincs regisztrálva")
             {
+                MessageBoxButton buttons = MessageBoxButton.YesNo;
+                MessageBox.Show($"Navigálás a regisztrációhoz: {buttons}");
                 _mainFrame.Navigate(new RegistrationPage());
             }
-            else
+            else if(username == "" && password == "")
             {
-                MessageBox.Show("Kérlek, töltsd ki a mezőket!");
+                MessageBox.Show("Kérem töltse ki a mezőket!");
             }
+
         }
     }
 }
