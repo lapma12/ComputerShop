@@ -8,5 +8,7 @@ namespace ComputerShop.Services
 {
     internal interface ISqlStatement
     {
+        ICollection<object> GetAllData();
+        object GetData(string username, string password);
     }
 }

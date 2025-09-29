@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerShop.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,8 +23,12 @@ namespace ComputerShop
     {
         public MainWindow()
         {
+            ISqlStatement sqlStatement;
             InitializeComponent();
             MainFrame.Navigate(new Pages.LoginPage(MainFrame));
+
+            //sqlStatement = new ComputerTable();
+            //var data = sqlStatement.GetData());
         }
     }
 }
